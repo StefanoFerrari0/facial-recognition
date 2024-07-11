@@ -1,6 +1,6 @@
 import { Router } from "express";
 import userController from "../controllers/user.controller.js";
-// import { authenticateToken, authorize } from "../middleware/middlewares.js";
+import { authenticateToken, authorize } from "../middleware/middlewares.js";
 import { createUpload } from "../utils/functions.js";
 
 /* 
@@ -12,11 +12,11 @@ const upload = createUpload();
 
 router.post("/login", userController.login);
 
-// router.use(authenticateToken);
+router.use(authenticateToken);
 router.post("/logout", userController.logout);
 router.get("/auth/user", userController.getAuthenticatedUser);
 
-// router.use(authorize())
+router.use(authorize())
 router.get("/all", userController.getAllUsers);
 router.post("/", upload.single("image"), userController.createUser);
 router.get("/:id", userController.getUserById);
