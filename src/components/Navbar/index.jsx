@@ -46,46 +46,48 @@ const Navbar = () => {
       "flex text-slate items-center gap-2 py-2 pr-4 cursor-pointer capitalize transition-colors duration-300 hover:text-slate focus:text-slate hover:bg-teal-500 focus:bg-teal-500";
     return (
       <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-        <Typography as="a" href="/" className="font-medium">
-          <ListItem className={listItemClassName}>Home</ListItem>
-        </Typography>
-        <Typography
-          as="a"
-          href="/presentismo"
-          className="font-medium text-slate hover:text-teal-500"
-        >
-          <ListItem className={listItemClassName}>Presentismo</ListItem>
-        </Typography>
+        <Link to="/">
+          <Typography className="font-medium">
+            <ListItem className={listItemClassName}>Home</ListItem>
+          </Typography>
+        </Link>
+        <Link to="/presentismo">
+          <Typography
+            className="font-medium text-slate hover:text-teal-500"
+          >
+            <ListItem className={listItemClassName}>Presentismo</ListItem>
+          </Typography>
+        </Link>
         {user ? (
           <>
-            <Typography
-              as="a"
-              href="/empleados"
-              className="font-medium text-slate hover:text-teal-500"
-            >
-              <ListItem className={listItemClassName}>Empleados</ListItem>
-            </Typography>
-            <Typography
-              as="a"
-              href="/lista-presentismo"
-              className="font-medium text-slate hover:text-teal-500"
-            >
-              <ListItem className={listItemClassName}>
-                Lista de presentismo
-              </ListItem>
-            </Typography>
+            <Link to="/empleados">
+              <Typography
+                className="font-medium text-slate hover:text-teal-500"
+              >
+                <ListItem className={listItemClassName}>Empleados</ListItem>
+              </Typography>
+            </Link>
+            <Link to="/lista-presentismo">
+              <Typography
+                className="font-medium text-slate hover:text-teal-500"
+              >
+                <ListItem className={listItemClassName}>
+                  Lista de presentismo
+                </ListItem>
+              </Typography>
+            </Link>
           </>
         ) : (
           <>
-           <Typography
-              as="a"
-              href="/crear-nuevo-empleado"
-              className="font-medium text-slate hover:text-teal-500"
-            >
-              <ListItem className={listItemClassName}>
-                Utiliza tu cara
-              </ListItem>
-            </Typography>
+            <Link to="/crear-nuevo-empleado">
+             <Typography
+                className="font-medium text-slate hover:text-teal-500"
+              >
+                <ListItem className={listItemClassName}>
+                  Utiliza tu cara
+                </ListItem>
+              </Typography>
+            </Link>
           </>
         )}
       </List>
@@ -100,7 +102,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/">
-          <Logo/>
+            <Logo/>
           </Link>
           <Typography
             variant="h6"
