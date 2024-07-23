@@ -9,7 +9,7 @@ import morgan from "morgan";
 
 const app = express();
 
-app.use(morgan("dev")); // Loggea cada request en consola
+app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json());

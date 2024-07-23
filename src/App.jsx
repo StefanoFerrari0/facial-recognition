@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AttendanceDetail from "./pages/AttendanceDetail";
 import Container from "./components/Container";
 import EmployeeForm from "./pages/EmployeeForm"
+import PublicEmployeeForm from "./pages/PublicEmployeeForm"
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/presentismo" element={<Attendance />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/crear-nuevo-empleado" element={<PublicEmployeeForm/>} />
             <Route
               path="/lista-presentismo"
               element={

@@ -8,11 +8,6 @@ import { dirname, resolve, join, parse } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const facesDir = resolve(__dirname, "..", "faces");
-/*
-    Los servicios son llamados desde el controlador
-    Acá es donde deberia estar toda la lógica de negocio
-    Cada servicio debe tener un solo proposito
-*/
 class UserService {
   async createUser(userData) {
     const user = new User(userData);
@@ -61,7 +56,7 @@ class UserService {
       return {
         _id: fileName,
         faceImage: fileBuffer,
-        fullName: fileName, // Assuming the file name represents the full name
+        fullName: fileName,
       };
     });
     return storedImages;

@@ -16,8 +16,7 @@ import Logo from "../Logo"
 
 const Navbar = () => {
   const [openNav, setOpenNav] = useState(false);
-  const { isAuthenticated, setIsAuthenticated, setUser, user } =
-    useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated, setUser, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -57,7 +56,7 @@ const Navbar = () => {
         >
           <ListItem className={listItemClassName}>Presentismo</ListItem>
         </Typography>
-        {user && (
+        {user ? (
           <>
             <Typography
               as="a"
@@ -73,6 +72,18 @@ const Navbar = () => {
             >
               <ListItem className={listItemClassName}>
                 Lista de presentismo
+              </ListItem>
+            </Typography>
+          </>
+        ) : (
+          <>
+           <Typography
+              as="a"
+              href="/crear-nuevo-empleado"
+              className="font-medium text-slate hover:text-teal-500"
+            >
+              <ListItem className={listItemClassName}>
+                Utiliza tu cara
               </ListItem>
             </Typography>
           </>

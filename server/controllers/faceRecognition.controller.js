@@ -1,13 +1,6 @@
 import userService from "../services/user.service.js";
 import faceRecognitionService from "../services/faceRecognition.service.js";
 import fs from 'node:fs/promises'
-
-/*
-  Los controladores son llamados desde las rutas
-  Acá no deberia estar la lógica de negocio, para eso están los servicios.
-  Acá solamente recibimos información del cliente, validamos, y respondemos nuevamente al cliente.
-*/
-
 class FaceRecognitionController {
   async recognizeFace(req, res) {
     try {

@@ -21,6 +21,10 @@ class UserService {
     return await httpPhotoInstance.post(`${baseUrl}/`, data);
   }
 
+  async createUserPublic(data) {
+    return await httpPhotoInstance.post(`${baseUrl}/public`, data);
+  }
+
   async getUserById(id) {
     return await http.get(`${baseUrl}/${id}`);
   }

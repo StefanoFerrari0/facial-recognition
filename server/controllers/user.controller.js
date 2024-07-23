@@ -4,13 +4,6 @@ import dailyAttendanceService from "../services/dailyAttendance.service.js";
 import { Roles, Status } from "../utils/constants.js";
 import { comparePassword, generateJwt } from "../utils/functions.js";
 import fs from 'node:fs/promises'
-
-/*
-  Los controladores son llamados desde las rutas
-  Acá no deberia estar la lógica de negocio, para eso están los servicios.
-  Acá solamente recibimos información del cliente, validamos, y respondemos nuevamente al cliente.
-*/
-
 class UserController {
   async createUser(req, res) {
     try {
@@ -25,9 +18,45 @@ class UserController {
         if (!faceDescriptor) {
           return res.status(400).send({ message: "No face detected in query image." });
         }
-        formData.faceDescriptor = Array.from(faceDescriptor)
+        formData.faceDescriptor = Array.from(faceDescriptor);
       }
 
+      let newUser = await userService.createUser(formData);
+      const today = new Date(); 
+      const existingDailyAttendance = await dailyAttendanceService.getByDate(today);
+      if (!existingDailyAttendance?.attendanceRecords?.some(user => user.userId.equals(newUser._id))) {
+        existingDailyAttendance.attendanceRecords.push({ userId: newUser._id, status: Status.ABSENT });
+      }
+
+      await dailyAttendanceService.update(existingDailyAttendance._id, existingDailyAttendance);
+      res.status(201).json(newUser);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    } finally {
+      if(req?.file){
+        fs.unlink(req?.file?.path, (err) => {
+          if (err) {
+            console.error("Failed to delete query image:", err);
+          }
+        });
+      }
+    }
+  }
+
+  async createUserPublic(req, res) {
+    try {
+      const formData = JSON.parse(req.body.data);
+      
+        if(!req.file){
+          return res.status(400).send({ message: "No file has been uploaded." });
+        }
+        const queryImagePath = req.file.path;
+        const faceDescriptor = await faceRecognitionService.getQueryDescriptor(queryImagePath);
+        if (!faceDescriptor) {
+          return res.status(400).send({ message: "No face detected in query image." });
+        }
+        formData.faceDescriptor = Array.from(faceDescriptor);
+        formData.role = Roles.EMPLOYEE;
       let newUser = await userService.createUser(formData);
       const today = new Date(); 
       const existingDailyAttendance = await dailyAttendanceService.getByDate(today);

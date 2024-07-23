@@ -7,13 +7,11 @@ import {
   initializeFaceRecognitionModels,
 } from "./config/init.js";
 import app from "./app.js";
-import { seedUsers } from "./seeds.js";
 
 const server = createServer(app);
 
 initializeDB();
 initializeFaceRecognitionModels();
-//seedUsers();
 initializeDailyAttendance();
 initializeDailyAttendanceCron();
 

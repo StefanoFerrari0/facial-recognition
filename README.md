@@ -1,10 +1,10 @@
-# Programación 3 - Proyecto final
+# CheckFace - App de reconocimiento facial
 
 Seguí las instrucciones para configurar el entorno de desarrollo y comenzar a utilizar la aplicación.
 
 ## Configuración del Entorno
 
-1. Renombrá el archivo `.env.local.example` a `.env.local`.
+1. Crea un archivo nuevo utilizando los valores de `.env.local.example` pero que su nombre sea `.env.local`.
 
 ## Instalación y Ejecución del Proyecto
 
@@ -15,7 +15,7 @@ Seguí las instrucciones para configurar el entorno de desarrollo y comenzar a u
 4. Abrí una nueva terminal sin cerrar la anterior.
 5. Navega hasta la carpeta `server` con el comando `cd ./server`.
 6. Ejecuta el comando `npm install` para instalar las dependencias del backend.
-7. Después de completar la instalación, levanta el backend con el comando `npm run start`.
+7. Después de completar la instalación, levanta el backend con el comando `npm run dev`.
 
 ## Acceso a la Aplicación
 

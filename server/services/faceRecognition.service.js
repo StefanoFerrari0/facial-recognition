@@ -19,8 +19,8 @@ class FaceRecognitionService {
 
   getFaceDetectorOptions = () => {
     return new faceapi.TinyFaceDetectorOptions({
-      inputSize: 160, // Puedes ajustar el tamaño de entrada según tus necesidades
-      scoreThreshold: 0.5 // Puedes ajustar el umbral de puntuación según tus necesidades
+      inputSize: 160, 
+      scoreThreshold: 0.5
     });
   };
 
