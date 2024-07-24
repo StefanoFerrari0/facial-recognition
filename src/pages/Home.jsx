@@ -24,6 +24,10 @@ function Home() {
     navigate("/empleados");
   };
 
+  const goToCrearEmpleado = () => {
+    navigate("/crear-nuevo-empleado");
+  };
+
   const goToListaPresentismo = () => {
     navigate("/lista-presentismo");
   };
@@ -38,7 +42,7 @@ function Home() {
           icon={CameraIcon}
           onClick={goToPresentismo}
         />
-        {admitedRoles.includes(user?.role) && (
+        {admitedRoles.includes(user?.role) ? (
           <>
             <Card
               title="Empleados"
@@ -51,6 +55,15 @@ function Home() {
               description="Ver registros de asistencias e inasistencias."
               icon={ClipboardDocumentCheckIcon}
               onClick={goToListaPresentismo}
+            />
+          </>
+        ) : (
+          <>
+            <Card
+              title="Utiliza tu cara"
+              description="¿Queres probar el reconocimiento facial? Rellená un formulario con tus datos y una foto tuya!"
+              icon={UserIcon}
+              onClick={goToCrearEmpleado}
             />
           </>
         )}
