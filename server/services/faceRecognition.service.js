@@ -24,7 +24,7 @@ class FaceRecognitionService {
     });
   };
 
-  compareDescriptors(queryDescriptor, storedDescriptors, threshold = 0.6) {
+  compareDescriptors(queryDescriptor, storedDescriptors, threshold = 0.5) {
     console.log('Comparing descriptors...');
     let bestMatchId = null;
     let minDistance = Number.MAX_VALUE;
